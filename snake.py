@@ -1,30 +1,42 @@
 import pygame
 import random
-
+import neat
 import math
 #Initializing the pygame
 pygame.init()
 
 #create screen
 screen=pygame.display.set_mode((640,960))
-running=True
+
 score=0
 px = 320
 py = 944
 status="T"
+
 red=(255,0,0)
 green=(0,255,0)
 WHITE=(255,255,255)
+
 status="T"
+
 step_x=0
 step_y=-16
+pos=[(320,944)]
 snek_len=1
 #FOOD
 def ran():
-    return random.randrange(0,640,16) , random.randrange(0,960,16)
+    lx=[i[0] for i in pos]
+    ly=[j[1] for j in pos]
+    while True:
+        x=random.randrange(0,640,16)
+        y=random.randrange(0,960,16)
+        if x not in lx and y not in ly:
+            return x,y 
+        else:
+            continue
 F_x,F_y = ran()
 
-pos=[(320,944)]
+
 def draw():
     for i in range(0,snek_len):
         pygame.draw.rect(screen, red, (pos[i][0],pos[i][1], 16, 16))
@@ -44,6 +56,9 @@ def draw_text(surf, text, size, x, y):
     text_rect.midtop = (x, y)
     surf.blit(text_surface, text_rect)
 
+config_path="./config.txt"
+
+running=True
 while running:
     clock = pygame.time.Clock()
     pygame.display.flip()
@@ -105,6 +120,19 @@ while running:
         #pygame.draw.rect(screen, red, (px, py, 16, 16))
     else:
         print("END")
+        break
     draw_text(screen, str(score), 18, 320,10)
     pygame.display.update()
         
+"""
+def run():
+    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
+                            neat.DefaultSpeciesSet, neat.DefaultStagnation,
+                            config_file)
+    p = neat.Population(config)
+
+    # Add a stdout reporter to show progress in the terminal.
+    p.add_reporter(neat.StdOutReporter(True))
+    stats = neat.StatisticsReporter()
+    p.add_reporter(stats)
+    winner= p.run(f,50)"""
