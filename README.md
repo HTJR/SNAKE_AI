@@ -1,5 +1,6 @@
 # SNAKE_AI
 ### Simple snake game 
+### learning pygames
 ### Future plan was to make use neat to play this game 
 ### But the code is too messy 
 ### Another note Why OOPs is sometimes better 
