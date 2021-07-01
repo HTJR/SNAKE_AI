@@ -5,3 +5,4 @@
 ### But the code is too messy 
 ### Another note Why OOPs is sometimes better 
 ### Will Change the Functional code too Object oriented.
+### Not using neat now Will use CNN
